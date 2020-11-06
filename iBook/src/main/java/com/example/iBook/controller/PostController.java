@@ -1,5 +1,6 @@
 package com.example.iBook.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,14 +41,18 @@ public class PostController {
 		return posts;
 	}
 	
-	@RequestMapping("/get-users")
-	public List<User> getUsers() {
+	@RequestMapping("/save-post")
+	public Post savePost() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String name = auth.getName();
 		User user = UserRepo.findFirstByName(name);
 		
-		List<User> users = (List<User>) UserRepo.findAll();
-		return users;
+		Post post = new Post();
+		post.setUser(user);
+		post.setContent("Test Post!");
+		post.setDate(new Date());
+		post = PostRepo.save(post);
+		return post;
 	}
 	
 	

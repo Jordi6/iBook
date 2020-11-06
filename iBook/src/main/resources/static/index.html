@@ -2,10 +2,38 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="js/main.js"></script>
+<link rel="stylesheet" href="css/style.css" />
 <title>iBook</title>
 </head>
 <body>
-<h1>iBook Application</h1>
-
+	<header>
+		<input id="search" placeholder="search" />
+		<button id="add-post" type="button">Add Post</button>
+	</header>
+	<div id="create-post-popup">
+		<textarea></textarea>
+		<button id="save-post-button" type="button">Save</button>
+		<button id="cancel-post-button" type="button">Cancel</button>
+	</div>
+	<main>
+		<div id="post-template">
+			<div>
+				<span class="username">Username</span>
+				<span class="editable">Icon</span>
+			</div>
+			<div class="post-content">Some Content goes here!</div>
+			<div>
+				<button class="add-post-comment" type="button">Add Comment</button>
+				<button class="number-of-comments" type="button">Number of Comments</button>
+			</div>
+		</div>
+	</main>
 </body>
 </html>
+
+
+
+

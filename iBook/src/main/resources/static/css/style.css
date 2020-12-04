@@ -24,11 +24,11 @@ main {
 	/* we can add box-shadow to the main */
 }
 
-.post {
-	
+#post-template {
+	display: none;
 }
 
-#post-template {
+#post-template, .post {
 	position: relative;
 	background-color: white;
 	color: black;
@@ -36,13 +36,13 @@ main {
 	margin-bottom: .1em;
 }
 
-#create-post-popup textarea {
+#create-post-popup textarea, #add-comment-popup textarea {
 	display: block;
 	min-width: 100%;
 	max-width: 100%;
 }
 
-#create-post-popup {
+#create-post-popup, #add-comment-popup {
 	width: 50ch;
 	padding: 1em;
 	margin-left: auto;
@@ -61,9 +61,18 @@ main {
 	margin-top: 0;
 }
 
+#add-comment-popup {
+	margin-top: 0;
+	width: auto;
+	margin-bottom: .1em;
+}
 
+.editable {
+	float: right;
+}
 
-
-
+.comment {
+	margin-top: .5em;
+}
 
 

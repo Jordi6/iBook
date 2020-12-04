@@ -6,28 +6,38 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="js/main.js"></script>
 <link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/all.css" />
 <title>iBook</title>
 </head>
 <body>
 	<header>
-		<input id="search" placeholder="search" />
+		<input type="search" id="search" placeholder="search" />
 		<button id="add-post" type="button">Add Post</button>
 	</header>
 	<div id="create-post-popup">
 		<textarea></textarea>
 		<button id="save-post-button" type="button">Save</button>
 		<button id="cancel-post-button" type="button">Cancel</button>
+		<button id="delete-post-button" type="button">Delete</button>
+	</div>
+	<div id="add-comment-popup">
+		<textarea></textarea>
+		<button id="delete-comment" type="button">Delete</button>
+		<button id="save-comment" type="button">Save</button>
+		<button id="cancel-comment" type="button">Cancel</button>
 	</div>
 	<main>
 		<div id="post-template">
 			<div>
-				<span class="username">Username</span>
-				<span class="editable">Icon</span>
+				<span class="username"></span>
+				<i class="far fa-edit editable"></i>
 			</div>
-			<div class="post-content">Some Content goes here!</div>
+			<div class="post-content"></div>
 			<div>
-				<button class="add-post-comment" type="button">Add Comment</button>
-				<button class="number-of-comments" type="button">Number of Comments</button>
+				<a href="" class="comment-count"></a><i class="far fa-comment-alt comment-icon"></i>
+			</div>
+			<div class="comment-template">
+				<span class="comment-text"></span>
 			</div>
 		</div>
 	</main>

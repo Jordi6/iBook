@@ -4,18 +4,18 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="posts")
+@SecondaryTable(name="posts_comments")
 public class Post {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="posts_id")
 	private int id;
 	
@@ -28,6 +28,13 @@ public class Post {
 	
 	@Column(name="posts_date")
 	private Date date;
+	
+	
+	@Column(name="comment_count", table="posts_comments", insertable=false, updatable=false)
+	private Integer commentCount;
+	
+	@Transient
+	private boolean editable;
 
 	public int getId() {
 		return id;
@@ -60,6 +67,24 @@ public class Post {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+
+	public boolean isEditable() {
+		return editable;
+	}
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+
+	public Integer getCommentCount() {
+		return commentCount;
+	}
+
+	public void setCommentCount(Integer commentCount) {
+		this.commentCount = commentCount;
+	}
+
+
 	
 	
 

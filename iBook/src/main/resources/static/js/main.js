@@ -5,6 +5,9 @@ $(function() {
 	var morePages = true;
 	var editId = 0;
 	var commentPostId = 0;
+	var uploads = [];
+	
+	initUpload();
 
 	$(window).scroll(scrolled);
 	$("#add-post").click(showAddPost);
@@ -19,6 +22,25 @@ $(function() {
 	$("main").on("click", ".comment-count", getComments);
 
 	getPosts();
+	
+	
+	function initUpload() {
+		var dzDiv = $("#upload");
+		dzDiv.addClass("dropzone");
+		var dz = new Dropzone("#upload", {
+			paramName : "files",
+			url : "/upload" 
+		});
+		dz.on("success", uploadComplete);
+		dz.on("error", function(file, msg) {
+			alert(msg);
+		});
+	}
+	
+	function uploadComplete(event, response) {
+		console.log(response);
+		uploads.push(response);
+	}
 	
 	
 	function scrolled() {
@@ -186,13 +208,24 @@ $(function() {
 	}
 
 	function savePosts() {
-		var content = $("#create-post-popup textarea").val();
+		var $div = $("<div/>");
+		var $images = $("<p></p>");
+		for (var i=0; i < uploads.length; i++) {
+			var $a = $("<a></a>");
+			$a.attr("href", uploads[i].file);
+			$img = $("<img/>");
+			$img.attr("src", uploads[i].thumbnail);
+			$a.append($img);
+			$images.append($a);
+		}
+		$div.append($images);
+		uploads = [];
 		$.ajax({
 			url : "/save-post",
 			method : "post",
 			type : "json",
 			data : {
-				content : content,
+				content : $("#create-post-popup textarea").val()+$div.html(),
 				id : editId
 			},
 			error : ajaxError,

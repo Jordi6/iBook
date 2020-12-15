@@ -30,7 +30,7 @@ public class Post {
 	private Date date;
 	
 	
-	@Column(name="comment_count", table="posts_comments", insertable=false, updatable=false)
+	@Column(name="comment_number", table="posts_comments", insertable=false, updatable=false)
 	private Integer commentCount;
 	
 	@Transient
@@ -83,6 +83,8 @@ public class Post {
 	public void setCommentCount(Integer commentCount) {
 		this.commentCount = commentCount;
 	}
+
+
 
 
 	

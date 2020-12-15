@@ -8,7 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Embeddable
-public class AuthorityKey implements Serializable{
+public class AuthorityKey implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="username", nullable=false)
 	private User user;

@@ -69,13 +69,14 @@ public class PostController {
 	
 	
 	@RequestMapping("/get-posts")
-	public List<Post> getPosts(@RequestParam int limit,@RequestParam int offset) {
+	public List<Post> getPosts(@RequestParam int limit, @RequestParam int offset) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String name = auth.getName();
 		User user = UserRepo.findFirstByName(name);
 		Pageable page = PageRequest.of(offset/limit, limit);
 		
 		List<Post> posts = (List<Post>) PostRepo.findAllByOrderByDateDesc(page);
+		
 		
 		for (Post post :posts) {
 			if (name.equals(post.getUser().getName())) {
@@ -146,7 +147,7 @@ public class PostController {
 	
 	
 	@RequestMapping("/delete-post")
-	public Post deletePost(@RequestParam int id) {
+	public void deletePost(@RequestParam int id) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String name = auth.getName();
 		User user = UserRepo.findFirstByName(name);
@@ -154,9 +155,10 @@ public class PostController {
 		
 		
 		if (user.getName().equals(post.getUser().getName())) {
-			PostRepo.delete(post);
+			//PostRepo.delete(post);
+			PostRepo.deletePostById(id);
 		}
-		return post;
+		//return post;
 	}
 	
 	
